@@ -18,6 +18,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
@@ -151,6 +154,7 @@
       <workItem from="1603648218821" duration="9395000" />
       <workItem from="1603815618178" duration="8103000" />
       <workItem from="1603827343370" duration="367000" />
+      <workItem from="1603828281378" duration="891000" />
     </task>
     <servers />
   </component>
