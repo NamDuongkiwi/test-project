@@ -23,3 +23,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::apiResource('student', 'Api\StudentController');
 
 Route::apiResource('student', 'StudentController');
+
+Route::get('nam', function (){
+   $data = DB::table('student')
+        ->select('*')
+        -> get();
+});
+
