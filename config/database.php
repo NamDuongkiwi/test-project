@@ -62,28 +62,20 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],*/
-        ‘mysql’ => [
-            ‘driver’ => ‘mysql’,
-            ‘host’ => ‘db4free.net’,
-            ‘port’ => ‘3306’,
-            ‘database’ => dbname,
-            ‘username’ => dbusername,
-            ‘password’ =>dbpassword,
-            ‘charset’ => ‘utf8mb4’,
-            ‘collation’ => ‘utf8mb4_unicode_ci’,
-            ‘prefix’ => ‘’,
-            ‘strict’ => false,
-            ‘engine’ => null,
-            ‘modes’=>[
-                ‘ONLY_FULL_GROUP_BY’,
-                ‘STRICT_TRANS_TABLES’,
-                ‘NO_ZERO_IN_DATE’,
-                ‘NO_ZERO_DATE’,
-                ‘ERROR_FOR_DIVISION_BY_ZERO’,
-                ‘NO_ENGINE_SUBSTITUTION’,
-            ],
+        'mysql' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'db4free.net'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'your_database_name from_db4free'),
+            'username' => env('DB_USERNAME', 'your_db4free_      username'),
+            'password' => env('DB_PASSWORD', 'your_db4free_password'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
         ],
-
 
         'pgsql' => [
             'driver' => 'pgsql',
