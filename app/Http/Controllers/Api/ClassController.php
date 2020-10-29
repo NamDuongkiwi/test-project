@@ -16,8 +16,8 @@ class ClassController extends Controller
     {
         $class = \DB::table('class')
             ->join('teacher', 'teacher.teacher_id', '=', 'class.teacher_id')
-            ->select('class.*', 'teacher.teacher_name')
-            -get();
+            ->select('class.*', 'teacher.name')
+            ->get();
         return $class;
 
     }
