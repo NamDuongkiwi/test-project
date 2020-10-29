@@ -24,9 +24,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('student', 'StudentController');
 
-Route::get('nam', function (){
-   $data = DB::table('student')
-        ->select('*')
-        -> get();
-});
-
+Route::apiResource('class', 'Api/ClassController');

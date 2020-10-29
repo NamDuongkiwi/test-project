@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Http\Resources\Student as StudentResource;
+namespace App\Http\Controllers\Api;
 
-class StudentController extends Controller
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class ClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,15 +14,12 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
-        $student = \DB::table('student')
-            ->join('faculty', 'student.faculty_id', '=', 'faculty.faculty_id')
-            ->select('student.*', 'faculty.name')
-            -> get();
-        //return new StudentResource($student);
-        //return new StudentResource($student);
-        return $student;
-        //return Student::all();
+        $class = \DB::table('class')
+            ->join('teacher', 'teacher.teacher_id', '=', 'class.teacher_id')
+            ->select('class.*', 'teacher.teacher_name')
+            -get();
+        return $class;
+
     }
 
     /**
