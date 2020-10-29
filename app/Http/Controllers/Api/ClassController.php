@@ -16,10 +16,10 @@ class ClassController extends Controller
     {
         $class = \DB::table('class')
             ->join('teacher', 'teacher.teacher_id', '=', 'class.teacher_id')
-            ->select('class.*', 'teacher.name')
+            ->join('subject', 'subject.subject_id', '=','class.subject_id' )
+            ->select('class.class_id', 'subject.subject_name', 'class.room', 'class.day','class.start_class','class.end_class', 'teacher.name as teacher_name')
             ->get();
         return $class;
-
     }
 
     /**
