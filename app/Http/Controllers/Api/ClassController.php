@@ -17,7 +17,11 @@ class ClassController extends Controller
         $class = \DB::table('class')
             ->join('teacher', 'teacher.teacher_id', '=', 'class.teacher_id')
             ->join('subject', 'subject.subject_id', '=','class.subject_id' )
-            ->select('class.class_id', 'subject.subject_name', 'class.room', 'class.day','class.start_class','class.end_class', 'teacher.name as teacher_name')
+            /*->leftJoin('student_class', 'student_class.class_id' , '=', 'class.class_id')*/
+            ->select('class.class_id', 'subject.subject_name', 'class.max_student',
+                /*(\DB::raw('count(student_class.student_id) as current_student')),*/
+                'class.room', 'class.day','class.start_class','class.end_class', 'teacher.name as teacher_name')
+            /*->groupBy('student_class.class_id')*/
             ->get();
         return $class;
     }
