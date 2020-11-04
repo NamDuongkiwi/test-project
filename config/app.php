@@ -41,6 +41,8 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -139,6 +141,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravel\Passport\PassportServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
