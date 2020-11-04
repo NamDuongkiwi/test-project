@@ -1,10 +1,13 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+
+
+
 class UserController extends Controller
 {
     public $successStatus = 200;
@@ -18,6 +21,8 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
             return response()->json(['success' => $success], $this-> successStatus);
+            //return $user->id;
+            //return Auth::id();
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
@@ -38,6 +43,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
+
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);

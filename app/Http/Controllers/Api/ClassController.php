@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ClassController extends Controller
 {
@@ -18,10 +19,19 @@ class ClassController extends Controller
             ->get();
         return $class;
     }
-    public function deleteclass($id){
-        $user_id = Auth::user()->id;
+    public function deleteclass(){
+        $user_id = Auth::id();
+        $id = request('id');
         $class = \DB::class('student_class') -> where($user_id, $id) ->get();
         $class -> delete();
+    }
+
+    public function enroll(){
+        $user = Auth::user();
+        $id = Auth::id();
+        \DB::table('student_class')
+            ->insert([ 'student_id'=> $id, 'class_id' => request('class_id')]
+        );
     }
 }
 

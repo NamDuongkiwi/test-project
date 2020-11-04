@@ -18,3 +18,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 
 Route::get('class/{page}', 'Api\ClassController@getpage');
+Route::post('enroll', 'Api\ClassController@enroll');
+
+Route::post('import', 'Api\AdminController@importDataset');

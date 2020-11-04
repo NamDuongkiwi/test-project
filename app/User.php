@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
 
-    protected $fillable = [
+    public $fillable = [
         'id', 'password',
     ];
     /**
@@ -24,6 +24,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     //Role
+    public function get_id(){
+        return $this->id;
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);
