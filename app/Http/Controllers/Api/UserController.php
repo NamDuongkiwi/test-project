@@ -49,8 +49,8 @@ class UserController extends Controller
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer'
-        ]);
-    }*/
+        ]);*/
+    }
     /**
      * Register api
      *
