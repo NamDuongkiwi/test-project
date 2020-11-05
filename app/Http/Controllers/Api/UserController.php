@@ -21,12 +21,12 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
             //$user->generateToken();
-            //return response()->json(['success' => $success], $this-> successStatus);
+            return response()->json(['success' => $success], $this-> successStatus);
             //return $user->id;
             //return Auth::id();
-            return response()->json([
+            /*return response()->json([
                 'data' => $user->toArray(),
-            ]);
+            ]);*/
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
