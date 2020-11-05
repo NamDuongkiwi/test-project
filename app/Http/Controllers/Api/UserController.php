@@ -16,8 +16,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $request){
-/*        if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
+    public function login(){
+        if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
             $user = $this->Auth::guard()->user();
@@ -31,9 +31,9 @@ class UserController extends Controller
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
-        }*/
+        }
 
-        $request->validate([
+        /*$request->validate([
             'id' => 'required|string',
             'password' => 'required|string',
         ]);
@@ -50,7 +50,7 @@ class UserController extends Controller
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer'
         ]);
-    }
+    }*/
     /**
      * Register api
      *
