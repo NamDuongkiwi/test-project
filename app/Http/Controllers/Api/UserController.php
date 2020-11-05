@@ -20,7 +20,6 @@ class UserController extends Controller
         if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            $user = $this->Auth::guard()->user();
             //$user->generateToken();
             //return response()->json(['success' => $success], $this-> successStatus);
             //return $user->id;
@@ -32,24 +31,6 @@ class UserController extends Controller
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
         }
-
-        /*$request->validate([
-            'id' => 'required|string',
-            'password' => 'required|string',
-        ]);
-        $credentials = request(['id', 'password']);
-        if(!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        $token->save();
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer'
-        ]);*/
     }
     /**
      * Register api
