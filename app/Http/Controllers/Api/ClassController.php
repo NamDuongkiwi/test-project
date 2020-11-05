@@ -20,15 +20,17 @@ class ClassController extends Controller
         return $class;
     }
     public function deleteclass(){
-        $user_id = Auth::id();
+        /*$user_id = Auth::id();
         $id = request('id');
         $class = \DB::class('student_class') -> where($user_id, $id) ->get();
-        $class -> delete();
+        $class -> delete();*/
+        $user = Auth::user();
+        return Auth::id();
     }
 
     public function enroll(){
-        $user = Auth::user();
-        $id = Auth::id();
+        $user = Auth::guard('api')->user();
+        $id = Auth::guard('api')->id();
         \DB::table('student_class')
             ->insert([ 'student_id'=> $id, 'class_id' => request('class_id')]
         );

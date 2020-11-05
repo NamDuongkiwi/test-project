@@ -16,17 +16,40 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(){
-        if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
+    public function login(Request $request){
+/*        if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
-            return response()->json(['success' => $success], $this-> successStatus);
+            $user = $this->Auth::guard()->user();
+            //$user->generateToken();
+            //return response()->json(['success' => $success], $this-> successStatus);
             //return $user->id;
             //return Auth::id();
+            return response()->json([
+                'data' => $user->toArray(),
+            ]);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
-        }
+        }*/
+
+        $request->validate([
+            'id' => 'required|string',
+            'password' => 'required|string',
+        ]);
+        $credentials = request(['id', 'password']);
+        if(!Auth::attempt($credentials))
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        $user = $request->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->save();
+        return response()->json([
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer'
+        ]);
     }
     /**
      * Register api
@@ -60,5 +83,9 @@ class UserController extends Controller
     {
         $user = Auth::user();
         return response()->json(['success' => $user], $this-> successStatus);
+    }
+    public function user(Request $request)
+    {
+        return response()->json($request->user());
     }
 }
