@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('password');
-            $table->rememberToken();
+            //$table->rememberToken();
             $table->timestamps();
             $table->string('api_token', 60)->unique()->nullable();
         });
@@ -27,12 +27,12 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    /*public function down()
     {
         Schema::dropIfExists('users');
 
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['api_token']);
         });
-    }
+    }*/
 }

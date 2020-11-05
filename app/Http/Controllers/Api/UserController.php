@@ -86,6 +86,6 @@ class UserController extends Controller
     }
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        return Auth::guard()->id();
     }
 }
