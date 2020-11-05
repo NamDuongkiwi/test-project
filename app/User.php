@@ -13,7 +13,7 @@ class User extends Authenticatable
      */
 
     public $fillable = [
-        'id', 'password'
+        'id', 'password','api_token'
     ];
     /**
      * The attributes that should be hidden for arrays.

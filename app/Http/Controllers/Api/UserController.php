@@ -20,7 +20,11 @@ class UserController extends Controller
         if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $token = $success['token'];
             //$user->generateToken();
+            $user->forceFill([
+                'api_token' => $token,
+            ])->save();
             return response()->json(['success' => $success], $this-> successStatus);
             //return $user->id;
             //return Auth::id();
