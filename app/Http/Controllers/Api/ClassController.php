@@ -19,18 +19,17 @@ class ClassController extends Controller
             ->get();
         return $class;
     }
-    public function deleteclass(){
-        /*$user_id = Auth::id();
-        $id = request('id');
-        $class = \DB::class('student_class') -> where($user_id, $id) ->get();
-        $class -> delete();*/
-        $user = Auth::user();
-        return Auth::id();
+    public function deleteclass(Request $request){
+        //return $request->;
     }
 
-    public function enroll(){
-        $user = Auth::guard('api')->user();
+    public function enroll(Request $request){
+        $token = $request->bearerToken();
+
+        $user = $request->user();
+        //$id = User::where('api_token', $token);
         $id = Auth::guard('api')->id();
+        //$token = Auth::user()->
         \DB::table('student_class')
             ->insert([ 'student_id'=> $id, 'class_id' => request('class_id')]
         );

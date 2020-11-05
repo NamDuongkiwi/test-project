@@ -17,10 +17,12 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
 
-
+Route::middleware('auth:api')->get('/user', function(Request $request) {
+    return $request->user();
+});
 
 
 Route::get('class/{page}', 'Api\ClassController@getpage');
 Route::post('enroll', 'Api\ClassController@enroll');
-
+Route::post('delete', 'Api\ClassController@deleteclass');
 Route::post('import', 'Api\AdminController@importDataset');

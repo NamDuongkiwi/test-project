@@ -19,7 +19,7 @@ class UserController extends Controller
     public function login(){
         if(Auth::attempt(['id' => request('id'), 'password' => request('password')])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $success['token'] =  $user->createToken('MyApp')->accessToken;
             $token = $success['token'];
             //$user->generateToken();
             $user->forceFill([
@@ -71,6 +71,6 @@ class UserController extends Controller
     }
     public function user(Request $request)
     {
-        return Auth::guard()->id();
+        return $request->getUserInfo();
     }
 }
