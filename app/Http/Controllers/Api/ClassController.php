@@ -36,7 +36,17 @@ class ClassController extends Controller
             ->insert([ 'student_id'=> $user_id, 'class_id' => request('class_id')]
         );
     }
-
+    public function show(Request $request){
+        $user_id = $request->header('id');
+        $detais = \DB::table('student_class')
+            ->join('class', 'class.class_id', 'student_class.class_id')
+            ->join('subject', 'class.subject_id', 'subject.subject_id')
+            ->select('class.class_id', 'subject.subject_name', 'class.max_student',
+                'class.room', 'class.day','class.start_class','class.end_class')
+            ->where('student_class.student_id', '=', $user_id)
+            ->get();
+        return $detais;
+    }
 
 }
 
