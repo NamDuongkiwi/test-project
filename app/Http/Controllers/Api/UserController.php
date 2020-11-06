@@ -21,20 +21,16 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $token = $success['token'];
-            //$user->generateToken();
             $user->forceFill([
                 'api_token' => $token,
             ])->save();
+            $success['id'] = Auth::id();
             return response()->json(['success' => $success], $this-> successStatus);
-            //return $user->id;
-            //return Auth::id();
-            /*return response()->json([
-                'data' => $user->toArray(),
-            ]);*/
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
         }
+
     }
     /**
      * Register api
