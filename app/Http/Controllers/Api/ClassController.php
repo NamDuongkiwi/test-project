@@ -20,8 +20,12 @@ class ClassController extends Controller
         return $class;
     }
     public function deleteclass(Request $request){
-        $id = $request->header();
-        return $id;
+        $id = $request->header('id');
+        $data = \DB::table('student_class')
+            /*->where(['student_id','class_id'], [$id, request('class_id')]);*/
+            ->where('student_id', $id)
+            ->where('class_id', request('class_id'));
+        $data->delete();
     }
 
     public function enroll(Request $request){
