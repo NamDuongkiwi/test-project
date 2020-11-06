@@ -20,15 +20,19 @@ class ClassController extends Controller
         return $class;
     }
     public function deleteclass(Request $request){
-        //return $request->;
+        $token = $request->bearerToken();
+        $id = \DB::table('users')->where('api_token', '=',$token)->get('id');
+        $id = json_encode($id);
+        $id = substr($id,7,8);
+        return $id;
     }
 
     public function enroll(Request $request){
         $token = $request->bearerToken();
-
+        $id = \DB::table('users')->select('id')->where('api_token', '=',$token)->get('id');
         $user = $request->user();
-        //$id = User::where('api_token', $token);
-        $id = Auth::guard('api')->id();
+        $id = json_encode($id);
+        $id = substr($id,7,8);
         //$token = Auth::user()->
         \DB::table('student_class')
             ->insert([ 'student_id'=> $id, 'class_id' => request('class_id')]
