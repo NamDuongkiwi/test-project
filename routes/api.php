@@ -25,5 +25,5 @@ Route::middleware('auth:api')->get('/user', function(Request $request) {
 Route::get('class/{page}', 'Api\ClassController@getpage');
 Route::post('enroll', 'Api\ClassController@enroll');
 Route::post('delete', 'Api\ClassController@deleteclass');
-Route::post('import', 'Api\AdminController@importDataset');
+//Route::post('import', 'Api\AdminController@importDataset');
 Route::get('show', 'Api\ClassController@show');

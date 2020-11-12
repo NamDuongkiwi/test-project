@@ -51,6 +51,5 @@ class ClassController extends Controller
             ->get();
         return $detais;
     }
-
 }
 
