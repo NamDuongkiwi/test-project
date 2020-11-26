@@ -72,10 +72,10 @@ class ClassController extends Controller
         }
         //
         if($k == 1){
-            return response()->json("Lớp học bạn chọn đang trùng với môn đã đăng ký", 500);
+            return response()->json("Lớp học bạn chọn đang trùng với môn đã đăng ký", 400);
         }
         else if($k == 2){
-            return response()->json("Lớp học này có trùng thời khoá biểu với lớp khác bạn đã đăng ký", 500);
+            return response()->json("Lớp học này có trùng thời khoá biểu với lớp khác bạn đã đăng ký", 400);
         }
         else if($k == 0){
             \DB::table('student_class')
