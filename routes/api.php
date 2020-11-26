@@ -26,6 +26,7 @@ Route::middleware('auth:api')->get('/user', function(Request $request) {
 
 Route::post('test', 'Api\ClassController@test');
  */
+Route::get('class/{page}', 'Api\ClassController@getpage');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::post('test', 'Api\ClassController@test');
