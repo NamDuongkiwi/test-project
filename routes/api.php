@@ -34,3 +34,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('delete', 'Api\ClassController@deleteclass');
     Route::get('show', 'Api\ClassController@show');
 });
+
+
+
